@@ -28,4 +28,18 @@ ctrl.agregarLibro = (req, res) => {
     return res.status(201).json({ mensaje: 'Libro agregado con exito!' });
 }
 
+ctrl.actualizarLibro = (req, res) => {
+    const { id } = req.params;
+    const { title, author, year } = req.body;
+    const yearNumber = parseInt(year);
+    const libro = booksDB.find(libro => libro.id === parseInt(id));
+    if (!libro) {
+        return res.status(404).json({ Error: 'Libro no encontrado' });
+    }
+    libro.title = title;
+    libro.author = author;
+    libro.year = yearNumber;
+    return res.json({ mensaje: 'Libro actualizado con exito!' });
+}
+
 export { ctrl };

@@ -6,5 +6,6 @@ const router = Router();
 router.get('/books/', ctrl.obtenerTodosLosLibros);
 router.get('/books/:id', ctrl.obtenerUnLibro);
 router.post('/books/', ctrl.agregarLibro);
+router.put('/books/:id', ctrl.actualizarLibro)
 
 export default router;
