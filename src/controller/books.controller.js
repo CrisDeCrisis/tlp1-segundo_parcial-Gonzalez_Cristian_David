@@ -42,4 +42,15 @@ ctrl.actualizarLibro = (req, res) => {
     return res.json({ mensaje: 'Libro actualizado con exito!' });
 }
 
+ctrl.eliminarLibro = (req, res) => {
+    const { id } = req.params;
+    const libro = booksDB.find(libro => libro.id === parseInt(id));
+    if (!libro) {
+        return res.status(404).json({ Error: 'Libro no encontrado' });
+    }
+    const index = booksDB.indexOf(libro);
+    booksDB.splice(index, 1);
+    return res.json({ mensaje: 'Libro eliminado con exito!' });
+}
+
 export { ctrl };
